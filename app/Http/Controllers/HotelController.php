@@ -104,7 +104,7 @@ class HotelController extends Controller
                     $data['hotel'] = $hotel;
                 }
             } else{
-                $data['error'] = Auth::user();
+                $data['error'] = 'exxxx';
                 $data['success'] = false;
             }
         } catch (\Throwable $th) {
