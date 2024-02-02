@@ -103,8 +103,10 @@ class HotelController extends Controller
                     $data['success'] = true;
                     $data['hotel'] = $hotel;
                 }
-            } else
+            } else{
+                $data['error'] = Auth::user();
                 $data['success'] = false;
+            }
         } catch (\Throwable $th) {
             $data['error'] = $th;
             $data['success'] =  false;
