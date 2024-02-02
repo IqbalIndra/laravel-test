@@ -72,44 +72,39 @@ class HotelController extends Controller
     //create a hotel
     public function store(Request $request)
     {
-        try {
-            if (Auth::user()->is_admin) {
-                $data = $this->validateData([
-                    'name' => 'required',
-                    'address' => 'required',
-                    'city' => 'required',
-                    'star' => 'required',
-                    'x_coordinate' => 'required',
-                    'y_coordinate' => 'required',
-                    'image' => 'required',
-                ]);
+        if (Auth::user()->is_admin) {
+            $data = $this->validateData([
+                'name' => 'required',
+                'address' => 'required',
+                'city' => 'required',
+                'star' => 'required',
+                'x_coordinate' => 'required',
+                'y_coordinate' => 'required',
+                'image' => 'required',
+            ]);
 
-                $fileName = null;
-                if ($request->file('image')) {
-                    $fileName = "hotel_" . time() . "." . $request->file('image')->getClientOriginalExtension();
-                    $request->file('image')->move(public_path("/img/hotels"), $fileName);
-                }
-
-                $hotel = new Hotel;
-                $hotel->name = $request->name;
-                $hotel->address = $request->address;
-                $hotel->city = $request->city;
-                $hotel->star = $request->star;
-                $hotel->x_coordinate = $request->x_coordinate;
-                $hotel->y_coordinate = $request->y_coordinate;
-                $hotel->image = $fileName;
-
-                if ($hotel->save()) {
-                    $data['success'] = true;
-                    $data['hotel'] = $hotel;
-                }
-            } else{
-                $data['error'] = 'exxxx';
-                $data['success'] = false;
+            $fileName = null;
+            if ($request->file('image')) {
+                $fileName = "hotel_" . time() . "." . $request->file('image')->getClientOriginalExtension();
+                $request->file('image')->move(public_path("/img/hotels"), $fileName);
             }
-        } catch (\Throwable $th) {
-            $data['error'] = $th;
-            $data['success'] =  false;
+
+            $hotel = new Hotel;
+            $hotel->name = $request->name;
+            $hotel->address = $request->address;
+            $hotel->city = $request->city;
+            $hotel->star = $request->star;
+            $hotel->x_coordinate = $request->x_coordinate;
+            $hotel->y_coordinate = $request->y_coordinate;
+            $hotel->image = $fileName;
+
+            if ($hotel->save()) {
+                $data['success'] = true;
+                $data['hotel'] = $hotel;
+            }
+        } else{
+            $data['error'] = 'exxxx';
+            $data['success'] = false;
         }
 
         return response()->json(['data' => $data]);
