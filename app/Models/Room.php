@@ -8,16 +8,16 @@ class Room extends Model
 {
     public function hotel()
     {
-        return $this->belongsTo('App\Model\Hotel');
+        return $this->belongsTo('App\Models\Hotel');
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Model\Booking');
+        return $this->hasMany('App\Models\Booking');
     }
 
     public function features()
     {
-        return $this->hasMany('App\Model\Feature');
+        return $this->hasMany('App\Models\Feature');
     }
 }

@@ -37,11 +37,11 @@ class User extends Authenticatable
 
     public function reviews()
     {
-        return $this->hasMany('App\Model\Review');
+        return $this->hasMany('App\Models\Review');
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Model\Booking');
+        return $this->hasMany('App\Models\Booking');
     }
 }

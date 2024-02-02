@@ -8,11 +8,11 @@ class Hotel extends Model
 {
     public function rooms()
     {
-        return $this->hasMany('App\Model\Room');
+        return $this->hasMany('App\Models\Room');
     }
 
     public function reviews()
     {
-        return $this->hasMany('App\Model\Review');
+        return $this->hasMany('App\Models\Review');
     }
 }

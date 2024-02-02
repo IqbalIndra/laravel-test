@@ -8,6 +8,6 @@ class Feature extends Model
 {
     public function room()
     {
-        return $this->belongsTo('App\Model\Room');
+        return $this->belongsTo('App\Models\Room');
     }
 }
