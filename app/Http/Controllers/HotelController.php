@@ -106,7 +106,7 @@ class HotelController extends Controller
             } else
                 $data['success'] = false;
         } catch (\Throwable $th) {
-            echo $th;
+            $data['error'] = $th;
             $data['success'] =  false;
         }
 
