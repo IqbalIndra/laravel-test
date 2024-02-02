@@ -22,73 +22,73 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 
 Route::group(['middleware' => 'auth:api'], function () {
     //Hotel routes
-    Route::post('hotels', 'HotelContoller@store');
-    Route::put('hotels/{hotel}', 'HotelContoller@update');
-    Route::delete('hotels/{hotel}', 'HotelContoller@destroy');
-    Route::get('hotels/all', 'HotelContoller@getAllHotels');
+    Route::post('hotels', 'HotelController@store');
+    Route::put('hotels/{hotel}', 'HotelController@update');
+    Route::delete('hotels/{hotel}', 'HotelController@destroy');
+    Route::get('hotels/all', 'HotelController@getAllHotels');
 
-    Route::get('hotels/all-without-pagination', 'HotelContoller@getAllHotelsWithoutPagination');
+    Route::get('hotels/all-without-pagination', 'HotelController@getAllHotelsWithoutPagination');
 
     //Room routes
-    Route::post('rooms', 'RoomContoller@store');
-    Route::put('rooms/{room}', 'RoomContoller@update');
-    Route::delete('rooms/{room}', 'RoomContoller@destroy');
-    Route::get('rooms', 'RoomContoller@index');
+    Route::post('rooms', 'RoomController@store');
+    Route::put('rooms/{room}', 'RoomController@update');
+    Route::delete('rooms/{room}', 'RoomController@destroy');
+    Route::get('rooms', 'RoomController@index');
 
     //Booking routes
-    Route::get('bookings', 'BookingContoller@index');
-    Route::get('bookings/user/{user}', 'BookingContoller@getUserBookings');
-    Route::get('all-payment-bookings', 'BookingContoller@getAllPaymentBooking');
-    Route::get('all-payment-bookings/user/{user}', 'BookingContoller@getUserBookingsPaymentStatus');
-    Route::put('/bookings/{id}/update-status', 'BookingContoller@updateStatus');
+    Route::get('bookings', 'BookingController@index');
+    Route::get('bookings/user/{user}', 'BookingController@getUserBookings');
+    Route::get('all-payment-bookings', 'BookingController@getAllPaymentBooking');
+    Route::get('all-payment-bookings/user/{user}', 'BookingController@getUserBookingsPaymentStatus');
+    Route::put('/bookings/{id}/update-status', 'BookingController@updateStatus');
 
     //Review routes
 
-    Route::get('reviews', 'ReviewContoller@index');
-    Route::post('reviews', 'ReviewContoller@store');
-    Route::put('reviews/{review}', 'ReviewContoller@update');
-    Route::delete('reviews/{review}', 'ReviewContoller@destroy');
-    Route::get('reviews/user/{user}', 'ReviewContoller@getUserReviews');
+    Route::get('reviews', 'ReviewController@index');
+    Route::post('reviews', 'ReviewController@store');
+    Route::put('reviews/{review}', 'ReviewController@update');
+    Route::delete('reviews/{review}', 'ReviewController@destroy');
+    Route::get('reviews/user/{user}', 'ReviewController@getUserReviews');
 
     //User routes
 
-    Route::get('users/{user}', 'UserContoller@show');
-    Route::put('users/{user}', 'UserContoller@update');
-    Route::put('users/{user}/update-personal-info', 'UserContoller@updatePersonalInfo');
-    Route::put('users/{user}/update-email', 'UserContoller@updateEmail');
-    Route::put('users/{user}/update-password', 'UserContoller@updatePassword');
-    Route::delete('users/{user}', 'UserContoller@destroy');
+    Route::get('users/{user}', 'UserController@show');
+    Route::put('users/{user}', 'UserController@update');
+    Route::put('users/{user}/update-personal-info', 'UserController@updatePersonalInfo');
+    Route::put('users/{user}/update-email', 'UserController@updateEmail');
+    Route::put('users/{user}/update-password', 'UserController@updatePassword');
+    Route::delete('users/{user}', 'UserController@destroy');
 });
 
 
-Route::post('bookings', 'BookingContoller@store');
+Route::post('bookings', 'BookingController@store');
 
 
 //Hotel routes
-Route::get('hotels', 'HotelContoller@index');
-Route::post('hotels/search', 'HotelContoller@search');
-Route::get('hotels/search', 'HotelContoller@getSearchData');
-Route::get('hotels/images', 'HotelContoller@getHotelImages');
-Route::get('hotels/{hotel}', 'HotelContoller@show');
+Route::get('hotels', 'HotelController@index');
+Route::post('hotels/search', 'HotelController@search');
+Route::get('hotels/search', 'HotelController@getSearchData');
+Route::get('hotels/images', 'HotelController@getHotelImages');
+Route::get('hotels/{hotel}', 'HotelController@show');
 
 //Room routes
-Route::get('rooms/{room}', 'RoomContoller@show');
+Route::get('rooms/{room}', 'RoomController@show');
 
 //User routes
 
-Route::post('login', 'UserContoller@login'); //auth
-Route::post('register', 'UserContoller@register'); //auth
+Route::post('login', 'UserController@login'); //auth
+Route::post('register', 'UserController@register'); //auth
 
 //Feature routes
 
-Route::get('features', 'FeatureContoller@index');
-Route::get('features/{feature}', 'FeatureContoller@show');
-Route::post('features', 'FeatureContoller@store');
-Route::put('features/{feature}', 'FeatureContoller@update');
-Route::delete('features/{feature}', 'FeatureContoller@destroy');
+Route::get('features', 'FeatureController@index');
+Route::get('features/{feature}', 'FeatureController@show');
+Route::post('features', 'FeatureController@store');
+Route::put('features/{feature}', 'FeatureController@update');
+Route::delete('features/{feature}', 'FeatureController@destroy');
 
 //Review routes
 //if no logged
-Route::get('reviews/hotel/{hotel}/', 'ReviewContoller@getHotelReviews');
+Route::get('reviews/hotel/{hotel}/', 'ReviewController@getHotelReviews');
 //if logged
-Route::get('reviews/hotel/{hotel}/{user}', 'ReviewContoller@getHotelReviews');
+Route::get('reviews/hotel/{hotel}/{user}', 'ReviewController@getHotelReviews');
