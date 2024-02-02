@@ -11,6 +11,6 @@ class FeatureSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Feature::class, 20)->create();
+        factory(\App\Models\Feature::class, 20)->create();
     }
 }

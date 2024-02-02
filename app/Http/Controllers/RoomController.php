@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
-use App\Feature;
+use App\Models\Feature;
+use App\Models\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class RoomController extends Controller

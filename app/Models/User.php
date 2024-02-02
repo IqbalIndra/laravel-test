@@ -1,11 +1,10 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
-use Laravel\Passport\HasApiTokens;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
+use Laravel\Passport\HasApiTokens;
 
 class User extends Authenticatable
 {
@@ -38,11 +37,11 @@ class User extends Authenticatable
 
     public function reviews()
     {
-        return $this->hasMany('App\Review');
+        return $this->hasMany('App\Model\Review');
     }
 
     public function bookings()
     {
-        return $this->hasMany('App\Booking');
+        return $this->hasMany('App\Model\Booking');
     }
 }

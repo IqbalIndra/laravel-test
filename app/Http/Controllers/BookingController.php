@@ -2,17 +2,14 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
-use App\User;
-use App\Booking;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\App;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Http;
-use Illuminate\Support\Facades\Validator;
-use App\Notifications\CustomerWaitingPaidNotification;
+use App\Models\Booking;
+use App\Models\User;
 use App\Notifications\CustomerPaidNotification;
+use App\Notifications\CustomerWaitingPaidNotification;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Notification;
+use Illuminate\Support\Facades\Validator;
 
 class BookingController extends Controller
 {
@@ -80,7 +77,7 @@ class BookingController extends Controller
         } else {
             $data['success'] = false;
         }
-        
+
         return response()->json(['data' => $data, 'success' => true,]);
     }
 
@@ -98,15 +95,15 @@ class BookingController extends Controller
                 'telephone' => 'required',
                 'image' => 'required',
             ]);
-    
+
             $user_id = $request->filled('user_id') ? $request->user_id : null;
-            
+
                 $fileName = null;
                 if ($request->file('image')) {
                     $fileName = "booking_" . time() . "." . $request->file('image')->getClientOriginalExtension();
                     $request->file('image')->move(public_path("/img/booking"), $fileName);
                 }
-    
+
                 $booking = new Booking;
                 $booking->check_in = $request->check_in;
                 $booking->check_out = $request->check_out;
@@ -117,7 +114,7 @@ class BookingController extends Controller
                 $booking->telephone = $request->telephone;
                 $booking->image = $fileName;
                 $booking->total_price = $request->total_price;
-    
+
                 $notification = new CustomerWaitingPaidNotification([
                     'full_name' => $request->full_name,
                     'check_in' => $request->check_in,
@@ -136,7 +133,7 @@ class BookingController extends Controller
                     $data['success'] = true;
                     $data['booking'] = $booking;
                 }
-            
+
         } catch (\Throwable $th) {
             $data['success'] =  false;
             $data['error_message'] = $th->getMessage();
@@ -156,8 +153,8 @@ class BookingController extends Controller
                     'status' => $request->status
                 ];
 
-                
-                
+
+
                 if ($booking->save()) {
                     try {
                         Notification::route('mail', $request->email)->notify(new CustomerPaidNotification($data));
@@ -234,7 +231,7 @@ class BookingController extends Controller
         } else {
             $data['success'] = false;
         }
-        
+
         return response()->json(['data' => $data]);
     }
 

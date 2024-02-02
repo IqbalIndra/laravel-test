@@ -1,9 +1,9 @@
 <?php
 
-use Illuminate\Support\Str;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -14,7 +14,7 @@ class UserSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\User::class, 10)->create();
+        factory(\App\Models\User::class, 10)->create();
         DB::table('users')->insert([
             'first_name' => "Ahmed",
             'last_name' => "Hamada",

@@ -2,14 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use App\Room;
-use App\User;
-use App\Hotel;
-use App\Booking;
-use App\Feature;
+use App\Models\Feature;
+use App\Models\Hotel;
+use App\Models\Room;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Validator;
 
 class HotelController extends Controller
@@ -44,7 +42,7 @@ class HotelController extends Controller
 
         return response()->json(['data' => $data]);
     }
-	
+
 	//get all hotel whithout pagination
 	public function getAllHotelsWithoutPagination()
 	{
@@ -58,8 +56,8 @@ class HotelController extends Controller
 		} else {
 			$data['success'] = false;
 		}
-		
-		return response()->json(['data' => $data]);	
+
+		return response()->json(['data' => $data]);
 	}
 
 

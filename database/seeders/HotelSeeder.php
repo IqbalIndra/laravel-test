@@ -1,7 +1,6 @@
 <?php
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
 
 class HotelSeeder extends Seeder
 {
@@ -12,18 +11,18 @@ class HotelSeeder extends Seeder
      */
     public function run()
     {
-        factory(App\Hotel::class, 10)->create()->each(function ($hotel) {
-            factory(App\Room::class, 10)->create([
+        factory(\App\Models\Hotel::class, 10)->create()->each(function ($hotel) {
+            factory(\App\Models\Room::class, 10)->create([
                 'hotel_id' => $hotel->id
             ])->each(function ($room) {
-                factory(App\Feature::class, 10)->create([
+                factory(\App\Models\Feature::class, 10)->create([
                     'room_id' => $room->id
                 ]);
-                factory(App\Booking::class, 1)->create([
+                factory(\App\Models\Booking::class, 1)->create([
                     'room_id' => $room->id
                 ]);
             });
-            factory(App\Review::class, 10)->create([
+            factory(\App\Models\Review::class, 10)->create([
                 'hotel_id' => $hotel->id
             ]);
         });
